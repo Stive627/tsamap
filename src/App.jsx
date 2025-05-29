@@ -33,20 +33,27 @@ function App() {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
-  const handleButtonClick = () => {
+
+  useEffect(()=>{
+    function success(position) {
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
     mapRef.current.flyTo({
-      center:INITIAL_CENTER,
-      zoom:INITIAL_ZOOM
+      center:[longitude, latitude],
+      zoom: INITIAL_ZOOM
     })
   }
+    function error() {
+    console.log("Unable to retrieve your location")
+  }
+  navigator.geolocation.getCurrentPosition(success, error);
+  },[])
+
   return (
     <>
       <div className=" sidebar">
         Longitude: {center[0].toFixed(4)} | Latitude: {center[1].toFixed(4)} | Zoom: {zoom.toFixed(2)}
       </div>
-      <button onClick={handleButtonClick} className="reset-button">
-        Reset
-      </button>
       <div id='map-container' ref={mapContainerRef}></div>
     </>
   )
