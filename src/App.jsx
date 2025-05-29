@@ -4,10 +4,10 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import './App.css'
 
 const INITIAL_CENTER = [
-    -74.0242,
-    40.6941
+    0,
+    0
 ]
-const INITIAL_ZOOM = 10.12
+const INITIAL_ZOOM = 0
 const accessToken = 'pk.eyJ1Ijoic3RpdmV0c2EiLCJhIjoiY21hM3Q4azhvMDBtdjJpcXhpaDRtYjB2OCJ9.cAVLQ69PTYp33gHCB6yV1A'
 
 function App() {
@@ -40,7 +40,7 @@ function App() {
     const longitude = position.coords.longitude;
     mapRef.current.flyTo({
       center:[longitude, latitude],
-      zoom: INITIAL_ZOOM
+      zoom: 13.12
     })
   }
     function error() {
